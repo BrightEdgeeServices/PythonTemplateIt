@@ -94,17 +94,6 @@ jobs:
           draft: false
           prerelease: false
 
-  #     Uncomment this section for non-template use
-  #     - name: Publish to PyPI
-  #       uses: pypa/gh-action-pypi-publish@release/v1
-  #       with:
-  #         user: __token__
-  #         password: ${{ secrets.PYPI_API_TOKEN }}  # or your PyPI API token
-  #         packages_dir: dist
-  #         verify_metadata: true  # optional, default: true
-  #         # skip_existing: false   # optional
-  #         # attestations: true     # optional
-
   Send-Notice:
     needs: Build-and-Publish
     runs-on: ${{ matrix.os }}
