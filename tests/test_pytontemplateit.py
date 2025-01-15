@@ -1,10 +1,10 @@
-import pythontemplate
+import pythontemplateit
 
 
 class TestMyClass:
     def test_init(self, my_fixture):
         status = my_fixture
-        myclass = pythontemplate.MyClass(status)
+        myclass = pythontemplateit.MyClass(status)
 
         assert myclass.status
         pass
