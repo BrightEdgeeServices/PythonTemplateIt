@@ -5,15 +5,15 @@ PythonTemplateIt
 +-----------+------------------------------------------------------------------------------------+
 |**General**| |maintenance_y| |semver| |license|                                                 |
 +-----------+------------------------------------------------------------------------------------+
-|**CI**     | |codestyle| |codecov|                                                              |
+|**CD/CI**     | |codestyle| |codecov|                                                           |
 +-----------+------------------------------------------------------------------------------------+
 |**PyPI**   | |pypi_release| |pypi_py_versions| |pypi_status| |pypi_format| |pypi_downloads|     |
 +-----------+------------------------------------------------------------------------------------+
-|**Github** | |gh_issues| |gh_language| |gh_last_commit| |gh_deployment|                         |
+|**Github** | |gh_issues| |gh_language| |gh_last_commit|                                         |
 +-----------+------------------------------------------------------------------------------------+
 
 
-    Exploring Poetry.
+    Python repository template.
 
 
 .. General
@@ -34,12 +34,12 @@ PythonTemplateIt
     :target: https://semver.org/
     :alt: Semantic Versioning - 2.0.0
 
+
+.. CI
+
 .. |codestyle| image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/psf/black
     :alt: Code Style Black
-
-
-.. CI
 
 .. |pre_commit_ci| image:: https://img.shields.io/github/actions/workflow/status/BrightEdgeeServices/PythonTemplateIt/pre-commit.yml?label=pre-commit
     :target: https://github.com/BrightEdgeeServices/PythonTemplateIt/blob/master/.github/workflows/pre-commit.yml
@@ -49,7 +49,7 @@ PythonTemplateIt
     :target: https://github.com/BrightEdgeeServices/PythonTemplateIt/blob/master/.github/workflows/ci.yml
     :alt: Test status
 
-.. |gha_docu| image:: https://img.shields.io/readthedocs/sqlalchemyexample
+.. |gha_docu| image:: https://img.shields.io/readthedocs/PythonTemplateIt
     :target: https://github.com/BrightEdgeeServices/PythonTemplateIt/blob/master/.github/workflows/check-rst-documentation.yml
     :alt: Read the Docs
 
