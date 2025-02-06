@@ -3,14 +3,14 @@ repos:
     rev: v5.0.0
     hooks:
       - id: check-added-large-files
-        args: ['--maxkb=500']
+        args: [ '--maxkb=500' ]
       - id: check-json
       - id: check-merge-conflict
       - id: check-toml
       - id: check-yaml
       - id: debug-statements
-#      - id: mixed-line-ending
-#        args: [ --fix=crlf ]
+      #      - id: mixed-line-ending
+      #        args: [ --fix=crlf ]
       - id: no-commit-to-branch
         args: [ --branch, master ]
       - id: pretty-format-json
@@ -22,7 +22,7 @@ repos:
     rev: 0.7.22  # Use the ref you want to point at
     hooks:
       - id: mdformat
-        args: [ --end-of-line, crlf, README.md, UPGRADE.md, ReleaseNotes.md ]
+        args: [ --end-of-line, crlf, README.md, ReleaseNotes.md ]
         additional_dependencies:
           - mdformat-black
           - mdformat-gfm
@@ -65,6 +65,6 @@ repos:
   - repo: https://github.com/pycqa/flake8
     rev: 7.1.1
     hooks:
-    - id: flake8
-      language_version: python3
-      exclude: 'templates'
+      - id: flake8
+        language_version: python3
+        exclude: 'templates'

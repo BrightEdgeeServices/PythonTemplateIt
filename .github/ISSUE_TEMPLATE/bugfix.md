@@ -38,6 +38,7 @@ assignees: ''
 <!--Will be provided by owner -->
 
 ## Checks
+
 Only once all the checks below are completed should there be a new release:
 
 - [ ] Remove warnings, errors and spelling reported by IDE.
