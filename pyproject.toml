@@ -10,13 +10,6 @@ description = 'Template for new Python projects.'
 authors = [
     { name = 'Hendrik du Toit', email = 'hendrik@brightedge.co.za' },
 ]
-maintainers = [
-    { name = "Hendrik du Toit", email = "hendrikdt@citiqprepaid.co.za" },
-    { name = 'Henru du Toit', email = 'henru@brightedge.co.za' },
-    { name = 'Dirk du Toit', email = 'dirk@brightedge.co.za' },
-]
-license = "MIT"
-readme = "README.rst"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -27,13 +20,22 @@ classifiers = [
     "Topic :: System :: Archiving :: Packaging",
     'Programming Language :: Python :: 3.10',
     'Programming Language :: Python :: 3.11',
-    'Programming Language :: Python :: 3.12'
+    'Programming Language :: Python :: 3.12',
+    'Programming Language :: Python :: 3.13'
 ]
-# documentation = "https://readthedocs.org"
 dependencies = []
+license = "MIT"
+maintainers = [
+    { name = "Hendrik du Toit", email = "hendrikdt@citiqprepaid.co.za" },
+    { name = 'Henru du Toit', email = 'henru@brightedge.co.za' },
+    { name = 'Dirk du Toit', email = 'dirk@brightedge.co.za' },
+]
+readme = { file = 'README.md', content-type = 'text/markdown' }
+#readme = "README.md"
 requires-python = ">=3.10"
 
 [project.urls]
+# documentation = "https://readthedocs.org"
 issues = "https://github.com/BrightEdgeeServices/PythonTemplateIt/issues"
 Changelog = 'https://github.com/BrightEdgeeServices/PythonTemplateIt/blob/enhancement/master/ReleaseNotes.md'
 Homepage = 'https://github.com/BrightEdgeeServices/PythonTemplateIt'
@@ -68,7 +70,6 @@ source = [
 profile = "black"
 
 [tool.poetry.dependencies]
-
 
 [tool.poetry.group.dev]
 optional = true
