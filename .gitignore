@@ -1,3 +1,4 @@
+.idea
 .coverage
 .coveragerc
 .env
@@ -12,6 +13,9 @@ _build/
 *.db
 *.egg-info/
 *.sqlite
+*.pyc
+*.sqlite
+*.pyc
 *-workspace
 **/*.egg-info/
 **/__pycache__/
@@ -19,6 +23,8 @@ _build/
 **/desktop.ini
 **/*.py.isorted
 **/VersionArchive/
+*.log
+_build
 build/
 coverage.*
 dist/
@@ -26,6 +32,8 @@ docs/build/
 docs/_build/
 docs/source/generated/
 htmlcov/
+lib/*
+lib64
 logs/
 pyvenv.cfg
 tmp/
