@@ -76,20 +76,14 @@ jobs:
       - name: Configure Poetry
         run: |
           poetry config keyring.enabled false
-          poetry config http-basic.github.com x-access-token ${{ secrets.GH_REPO_ACCESS_BY_OWN_APPS }}
-          # poetry config http-basic.fidewebtourparser __token__ ${{ secrets.GH_REPO_ACCESS_BY_OWN_APPS }}
-          # poetry source add --priority=explicit fidewebtourparser https://github.com/RealTimeEvents/fidewebtourparser.git
-          # poetry add git+https://github.com/RealTimeEvents/fidewebtourparser.git
+          poetry config http-basic.PoetryPrivate __token__ ${{ secrets.GH_REPO_ACCESS_CURR_USER }}
+          poetry source add --priority=explicit PoetryPrivate https://github.com/BrightEdgeeServices/PoetryPrivate.git
+          poetry add git+https://github.com/BrightEdgeeServices/PoetryPrivate.git
 
       - name: Install dependencies
         run: |
           poetry install
 
-      #      - name: Install Poetry & Dependencies
-      #        run: |
-      #          pip install --upgrade pip
-      #          pip install poetry
-      #          poetry install
 
       - name: Build and publish with Poetry
         run: |
