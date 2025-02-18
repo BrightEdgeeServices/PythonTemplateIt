@@ -1,6 +1,10 @@
 Write-Host ''
 $dateTime = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-Write-Host "=[ START $dateTime ]======================[ create_db_sql_script.ps1 ]=" -ForegroundColor Blue
+Write-Host "=[ START $dateTime ]========================[ CreateDbSqlScript.ps1 ]=" -ForegroundColor Blue
+if (-not (Test-Path -Path "$env:PROJECT_DIR\scripts"))
+{
+    New-Item -Path "$env:PROJECT_DIR\scripts" -ItemType Directory | Out-Null
+}
 $filePath = "./scripts/setup_db.sql"
 
 # Define the contents of the file
@@ -17,5 +21,5 @@ Set-Content -Path $filePath -Value $fileContent
 
 # Output a confirmation message
 Write-Host "File '$filePath' has been created with the specified contents."
-Write-Host '-[ END ]------------------------------------------------------------------------' -ForegroundColor Cyan
+Write-Host '-[ END CreateDbSqlScript ]------------------------------------------------------' -ForegroundColor Cyan
 Write-Host ''

@@ -6,34 +6,36 @@ function Remove-RepositoryConfiguration
         [Object]$RepoDetails
     )
     Write-Host "Remove configuration" -ForegroundColor Magenta
-    poetry config ("http-basic." + $RepoDetails.priv_repo_name) --unset
-    poetry source remove $RepoDetails.priv_repo_name
-    poetry remove $RepoDetails.priv_repo_name
+    poetry config ("http-basic." + $RepoDetails.name) --unset
+    poetry source remove $RepoDetails.name
+    poetry remove $RepoDetails.name
 }
 
-function Remove-AddConfiguration
+function Publish-RepositoryConfiguration
 {
     param (
         [Object]$RepoDetails
     )
     Write-Host "Add configuration" -ForegroundColor Magenta
-    poetry config ("http-basic." + $RepoDetails.priv_repo_name) ($RepoDetails.priv_repo_user) ($RepoDetails.priv_repo_pwd)
-    poetry source add --priority=explicit $RepoDetails.priv_repo_name ("https://github.com/" + $RepoDetails.priv_repo_org + "/" + $RepoDetails.priv_repo_name + ".git")
-    poetry add ("git+https://github.com/" + $RepoDetails.priv_repo_org + "/" + $RepoDetails.priv_repo_name + ".git")
+    poetry source add --priority=supplemental $RepoDetails.name ("https://github.com/" + $RepoDetails.org + "/" + $RepoDetails.name + ".git")
+    poetry config ("http-basic." + $RepoDetails.name) ($RepoDetails.user) ($RepoDetails.pwd)
+    poetry add --source $RepoDetails.name ("git+https://github.com/" + $RepoDetails.org + "/" + $RepoDetails.name + ".git" + $RepoDetails.version_branch)
 }
 
 Write-Host ''
 $dateTime = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-Write-Host "=[ START $dateTime ]=====================================[ AddPrivateRepo.ps1 ]=" -ForegroundColor Blue
+Write-Host "=[ START $dateTime ]=========================[ SetupPrivateRepo.ps1 ]=" -ForegroundColor Blue
 
 $RepoDetails = [PSCustomObject]@{
-    priv_repo_name = "PoetryPrivate"
-    priv_repo_user = "__token__"
-    priv_repo_pwd = $env:GH_REPO_ACCESS_CURR_USER
-    priv_repo_org = "BrightEdgeeServices"
+    name = "PoetryPrivate"
+
+    user = "__token__"
+    pwd = $env:GH_REPO_ACCESS_CURR_USER
+    org = "BrightEdgeeServices"
+    version_branch = "#master"
 }
 Remove-RepositoryConfiguration -RepoDetails $RepoDetails
-Remove-AddConfiguration -RepoDetails $RepoDetails
+Publish-RepositoryConfiguration -RepoDetails $RepoDetails
 
-Write-Host '-[ END ]------------------------------------------------------------------------' -ForegroundColor Cyan
+Write-Host '-[ END SetupPrivateRepo.ps1 ]---------------------------------------------------' -ForegroundColor Cyan
 Write-Host ''

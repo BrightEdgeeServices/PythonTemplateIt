@@ -1,6 +1,6 @@
 Write-Host ''
 $dateTime = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-Write-Host "=[ START $dateTime ]========================================[ SetupDotEnv.ps1 ]=" -ForegroundColor Blue
+Write-Host "=[ START $dateTime ]==============================[ SetupDotEnv.ps1 ]=" -ForegroundColor Blue
 $filePath = "./.env"
 
 # Define the contents of the file
@@ -21,5 +21,5 @@ Set-Content -Path $filePath -Value $fileContent
 
 # Output a confirmation message
 Write-Host "File '$filePath' has been created with the specified contents."
-Write-Host '-[ END ]------------------------------------------------------------------------' -ForegroundColor Cyan
+Write-Host '-[ END SetupDotEnv.ps1 ]--------------------------------------------------------' -ForegroundColor Cyan
 Write-Host ''
