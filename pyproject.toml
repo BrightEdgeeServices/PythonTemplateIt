@@ -70,7 +70,6 @@ source = [
 profile = "black"
 
 [tool.poetry.dependencies]
-poetryprivate = { source = "PoetryPrivate" }
 
 [tool.poetry.group.dev]
 optional = true
