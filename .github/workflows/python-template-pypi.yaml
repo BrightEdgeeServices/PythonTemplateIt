@@ -9,7 +9,7 @@ on:
 jobs:
   default-deployment-pipeline:
     if: github.event.pull_request.merged == true
-    uses: RealTimeEvents/devops-automation/blob/master/.github/workflows/python-wf-default-pypi-pipeline.yaml@master
+    uses: ./RealTimeEvents/devops-automation/blob/master/.github/workflows/python-wf-default-pypi-pipeline.yaml@master
     with:
       run_deploy: ${{ github.event.pull_request.base.ref == 'main'}}
     secrets: inherit
