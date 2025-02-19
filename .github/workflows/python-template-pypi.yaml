@@ -1,0 +1,15 @@
+# GitHub Actions Script: python-template-pypi.yaml
+# This is a template and should not be changed unless you are familiar with the
+# reusable GitHub Actions strategy of the company.
+name: Python Default Template
+
+on:
+  push:
+
+jobs:
+  default-deployment-pipeline:
+    if: github.event.pull_request.merged == true
+    uses: citiq-prepaid/devops-platform/.github/workflows/python-wf-default-pypi-pipeline.yaml@master
+    with:
+      run_deploy: ${{ github.event.pull_request.base.ref == 'main'}}
+    secrets: inherit

@@ -1,6 +1,7 @@
 Write-Host ''
 $dateTime = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 Write-Host "=[ START $dateTime ]========================[ CreateDbSqlScript.ps1 ]=" -ForegroundColor Blue
+Write-Host "Executing $PSCommandPath..." -ForegroundColor Yellow
 if (-not (Test-Path -Path "$env:PROJECT_DIR\scripts"))
 {
     New-Item -Path "$env:PROJECT_DIR\scripts" -ItemType Directory | Out-Null

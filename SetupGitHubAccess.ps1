@@ -8,13 +8,12 @@ param (
     [Parameter(Mandatory = $false)]
     [Switch]$Help,
 
-# Used to indicate that the code is called by Pester to avoid unwanted code execution during Pester testing.
+    # Used to indicate that the code is called by Pester to avoid unwanted code execution during Pester testing.
     [Parameter(Mandatory = $false)]
     [Switch]$Pester
 )
 
-function Show-Help
-{
+function Show-Help {
     $separator = "-" * 80
     Write-Host $separator -ForegroundColor Cyan
 
@@ -34,29 +33,24 @@ function Show-Help
     Write-Host $separator -ForegroundColor Cyan
 }
 
-if (-not $Pester)
-{
+if (-not $Pester) {
     Write-Host ''
     $dateTime = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     Write-Host "=[ START $dateTime ]========================[ SetupGitHubAccess.ps1 ]=" -ForegroundColor Blue
+    Write-Host "Executing $PSCommandPath..." -ForegroundColor Yellow
     Write-Host "Configure access to https://github.com/$Organization/$RepoName" -ForegroundColor Blue
-    if ($ProjectName -eq "" -or $Help)
-    {
+    if ($ProjectName -eq "" -or $Help) {
         Show-Help
     }
-    else
-    {
+    else {
         Write-Host "Configure access to repository" -ForegroundColor Magenta
-        if (-not $Organization)
-        {
+        if (-not $Organization) {
             $Organization = $env:VENV_ORGANIZATION_NAME
         }
-        if ($Organization -eq "BEE")
-        {
+        if ($Organization -eq "BEE") {
             $Organization = "BrightEdgeeServices"
         }
-        elseif ($Organization -eq "Citiq")
-        {
+        elseif ($Organization -eq "Citiq") {
             $Organization = "citiq-prepaid"
         }
         elseif ($Organization -eq "HdT")
@@ -64,8 +58,7 @@ if (-not $Pester)
             $Organization = "hendrikdutoit"
         }
 
-        if (-not $RepoName)
-        {
+        if (-not $RepoName) {
             $RepoName = $env:PROJECT_NAME
         }
         git remote set-url origin https://$env:GH_REPO_ACCESS_CURR_USER@github.com/$Organization/$RepoName

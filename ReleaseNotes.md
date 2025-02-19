@@ -1,4 +1,4 @@
-# Release 0.1.0
+# Release 0.1.1
 
 - Remove private repository PoetryPrivate from workflow in Poetry configuration to allow publishing to PyPI.
 

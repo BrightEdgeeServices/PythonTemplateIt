@@ -1,7 +1,6 @@
 Write-Host ''
 
-function Remove-RepositoryConfiguration
-{
+function Remove-RepositoryConfiguration {
     param (
         [Object]$RepoDetails
     )
@@ -25,10 +24,10 @@ function Publish-RepositoryConfiguration
 Write-Host ''
 $dateTime = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 Write-Host "=[ START $dateTime ]=========================[ SetupPrivateRepo.ps1 ]=" -ForegroundColor Blue
+Write-Host "Executing $PSCommandPath..." -ForegroundColor Yellow
 
 $RepoDetails = [PSCustomObject]@{
     name = "PoetryPrivate"
-
     user = "__token__"
     pwd = $env:GH_REPO_ACCESS_CURR_USER
     org = "BrightEdgeeServices"

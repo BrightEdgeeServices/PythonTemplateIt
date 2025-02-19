@@ -1,4 +1,6 @@
-Write-Host "--------------------------------------------------------------------------------" -ForegroundColor Cyan
+Write-Host ''
+$dateTime = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+Write-Host "=[ START $dateTime ]==================================[ Install.ps1 ]=" -ForegroundColor Blue
 Write-Host "Executing $PSCommandPath..." -ForegroundColor Yellow
 
 if ($env:VENV_ORGANIZATION_NAME -eq "Citiq")
@@ -26,3 +28,5 @@ if (Test-Path -Path "$env:PROJECT_DIR\pyproject.toml")
 }
 pre-commit install
 pre-commit autoupdate
+Write-Host '-[ END InstallDevEnv.ps1 ]------------------------------------------------------' -ForegroundColor Cyan
+Write-Host ''
