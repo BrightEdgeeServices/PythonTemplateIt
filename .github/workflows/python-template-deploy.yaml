@@ -1,6 +1,7 @@
 # GitHub Actions Script: python-template-deploy.yaml
 # This is a template and should not be changed unless you are familiar with the
 # reusable GitHub Actions strategy of the company.
+# Delete this line
 name: Python Default Template
 
 on:
