@@ -1,5 +1,5 @@
 # Use an official Python runtime based on Debian 10 "bullseye" as a parent image
-FROM python:3.12.12-bullseye as base
+FROM python:3.13-slim-bullseye as base
 
 # Set the working directory to /app
 WORKDIR /app

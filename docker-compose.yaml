@@ -3,9 +3,6 @@
 services:
   db:
     container_name: "${PROJECT_NAME}_db"
-    build:
-      context: .
-      dockerfile: Dockerfile
     image: mysql:8.0.34
     command: mysqld --default-authentication-plugin=mysql_native_password
     environment:
