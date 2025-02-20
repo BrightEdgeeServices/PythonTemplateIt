@@ -1,7 +1,6 @@
 # GitHub Actions Script: python-template-deploy.yaml
 # This is a template and should not be changed unless you are familiar with the
 # reusable GitHub Actions strategy of the company.
-# Delete this line
 name: Python Default Template
 
 on:
@@ -9,6 +8,9 @@ on:
 
 jobs:
   default-deployment-pipeline:
+    permissions:
+      id-token: write
+      contents: write
     if: github.event.pull_request.merged == true
     uses: RealTimeEvents/devops-automation/.github/workflows/python-wf-default-deploy-pipeline.yaml@master
     with:
