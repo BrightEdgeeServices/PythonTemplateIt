@@ -1,7 +1,8 @@
 Write-Host ''
 $dateTime = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 Write-Host "=[ START $dateTime ]==============================[ SetupDotEnv.ps1 ]=" -ForegroundColor Blue
-$filePath = "./.env"
+Write-Host "Executing $PSCommandPath..." -ForegroundColor Yellow
+$filePath = "$env:PROJECT_DIR\.env"
 
 # Define the contents of the file
 $fileContent = @"
