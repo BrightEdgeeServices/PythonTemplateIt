@@ -8,9 +8,9 @@ on:
 
 jobs:
   default-deployment-pipeline:
-    permissions:
-      id-token: write
-      contents: write
+    #    permissions:
+    #      id-token: write
+    #      contents: write
     if: github.event.pull_request.merged == true
     uses: RealTimeEvents/devops-automation/.github/workflows/python-wf-default-deploy-pipeline.yaml@master
     with:
