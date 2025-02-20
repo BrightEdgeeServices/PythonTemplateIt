@@ -8,14 +8,25 @@ on:
 
 jobs:
   check-pypi-token:
-  - name: Check if PYPI_API_TOKEN_PROD is set
-    run: |
-      if [ -z "${{ secrets.PYPI_API_TOKEN_PROD }}" ]; then
-        echo "PYPI_API_TOKEN_PROD is empty!"
-        exit 1
-      else
-        echo "PYPI_API_TOKEN_PROD is set."
-      fi
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ 'ubuntu-latest' ]
+        python-version: [ '3.12' ]
+
+    permissions:
+      contents: write
+      id-token: write
+
+    steps:
+      - name: Check if PYPI_API_TOKEN_PROD is set
+        run: |
+          if [ -z "${{ secrets.PYPI_API_TOKEN_PROD }}" ]; then
+            echo "PYPI_API_TOKEN_PROD is empty!"
+            exit 1
+          else
+            echo "PYPI_API_TOKEN_PROD is set."
+          fi
 
   python-template-pypi-public-with-docker:
     permissions:
