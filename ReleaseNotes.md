@@ -1,3 +1,14 @@
+# Release 0.2.0
+
+- Replaced current GitHub Workflows with reusable workflows.
+- Update PowerShell scripts with screen displays.
+- Docker
+  - Correct Docker file configuration.
+  - Upgrade Python to 3.13
+- Update pyproject.toml
+
+______________________________________________________________________
+
 # Release 0.1.1
 
 - Remove private repository PoetryPrivate from workflow in Poetry configuration to allow publishing to PyPI.

@@ -1,13 +1,13 @@
-# GitHub Actions Script: python-template-pypi-public-with-docker.yaml
+# python-template-pypi-public-with-docker.yaml
 # This is a template and should not be changed unless you are familiar with the
 # reusable GitHub Actions strategy of the company.
-name: Python Default Template
+name: Python Template PyPI Public with-Docker
 
 on:
   push:
 
 jobs:
-  default-deployment-pipeline:
+  python-template-pypi-public-with-docker:
     permissions:
       id-token: write
       contents: write
