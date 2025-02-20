@@ -1,4 +1,4 @@
-# GitHub Actions Script: python-template-pypi.yaml
+# GitHub Actions Script: python-template-pypi-public-with-docker.yaml
 # This is a template and should not be changed unless you are familiar with the
 # reusable GitHub Actions strategy of the company.
 name: Python Default Template
@@ -12,7 +12,7 @@ jobs:
       id-token: write
       contents: write
     #    if: github.event.pull_request.merged == true
-    uses: RealTimeEvents/devops-automation/.github/workflows/python-wf-default-pypi-pipeline.yaml@master
+    uses: RealTimeEvents/devops-automation/.github/workflows/python-wf-pypi-public-with-docker.yaml@master
     with:
-      run_deploy: startsWith(github.ref, 'refs/tags/') == true
+      run_deploy: ${{ startsWith(github.ref, 'refs/tags/') == true }}
     secrets: inherit
