@@ -41,3 +41,5 @@ jobs:
     # secrets: inherit
     secrets:
       PYPI_API_TOKEN_PROD: ${{ secrets.PYPI_API_TOKEN_PROD }}
+      RELEASE_EMAIL_USER: ${{ secrets.RELEASE_EMAIL_USER }}
+      RELEASE_EMAIL_PASSWORD: ${{ secrets.RELEASE_EMAIL_PASSWORD }}
