@@ -1,3 +1,15 @@
+# Release 0.3.0
+
+- Removed .github/ISSUE_TEMPLATE/bugfix.md, .github/ISSUE_TEMPLATE/config.yaml, .github/ISSUE_TEMPLATE/enhancement.md, .github/ISSUE_TEMPLATE/hotfix.md and .github/ISSUE_TEMPLATE/release.md. Now contained in .github repository as default.
+- Removed .github/workflows/02-ci.yaml and .github/03-build-and-publish-to-pypi.yaml. Replaced by reusable workflows.
+- Added reusable workflow .github/workflow/py-temp-pypi-pub_with_docker-def.yaml
+- Add sample Dockerfile
+- Updated .gitignore, pre-commit-config.yaml, CreateDbSqlScript.ps1, docker-compose.yaml, InstallDevEnv.ps1, Licence.txt, pyproject.toml, SetupDotEnv.ps1, SetupGitHubAccess.ps1 and SetupPrivateRepo.ps1
+- Added SetupDocker.ps1,
+-
+
+______________________________________________________________________
+
 # Release 0.2.0
 
 - Replaced current GitHub Workflows with reusable workflows.

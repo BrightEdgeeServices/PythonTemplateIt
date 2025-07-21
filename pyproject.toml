@@ -6,7 +6,7 @@ build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "PythonTemplateIt"
-version = "0.2.0"
+version = "0.3.0"
 description = "Template for new Python projects."
 authors = [
     { name = "Hendrik du Toit", email = "hendrik@brightedge.co.za" }
