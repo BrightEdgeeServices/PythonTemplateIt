@@ -1169,22 +1169,6 @@ dev = ["pre-commit", "tox"]
 testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
-name = "poetryprivate"
-version = "0.2.0"
-description = "This repository is used in the POetryExample repository to illustrate importing a private repositiry with a token."
-optional = false
-python-versions = ">=3.10"
-groups = ["main"]
-files = []
-develop = false
-
-[package.source]
-type = "git"
-url = "https://github.com/BrightEdgeeServices/PoetryPrivate.git"
-reference = "master"
-resolved_reference = "a432a7ddebae3d489bfdc9d1625da093122b2de6"
-
-[[package]]
 name = "pre-commit"
 version = "4.1.0"
 description = "A framework for managing and maintaining multi-language pre-commit hooks."
@@ -2076,4 +2060,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10"
-content-hash = "af0296db6cd51d1e1439a274499c2ca7aafeddde3403ba8cc9ee8eb4fb79a9b6"
+content-hash = "88ada7866572f1718f3e88e6ae8135c42a36860e8cc83ffd4ca827dca49be10e"

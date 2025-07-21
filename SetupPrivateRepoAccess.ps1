@@ -42,7 +42,7 @@ $RepoDetails = [PSCustomObject]@{
     version_branch = "#master"
 }
 Remove-RepositoryConfiguration -RepoDetails $RepoDetails
-Publish-RepositoryConfiguration -RepoDetails $RepoDetails
+#Publish-RepositoryConfiguration -RepoDetails $RepoDetails
 
 Write-Host '-[ END SetupPrivateRepoAccess.ps1 ]---------------------------------------------' -ForegroundColor Cyan
 Write-Host ''

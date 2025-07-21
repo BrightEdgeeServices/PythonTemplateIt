@@ -25,7 +25,6 @@ classifiers = [
     "Topic :: System :: Archiving :: Packaging",
 ]
 dependencies = [
-    "poetryprivate @ git+https://github.com/BrightEdgeeServices/PoetryPrivate.git@master"
 ]
 license = "MIT"
 #license = "Proprietary"
@@ -99,7 +98,6 @@ url = "https://github.com/BrightEdgeeServices/PoetryPrivate.git"
 priority = "explicit"
 
 [tool.poetry.dependencies]
-poetryprivate = {source = "RTE"}
 
 [tool.pytest.ini_options]
 addopts = [
