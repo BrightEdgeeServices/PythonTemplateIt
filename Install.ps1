@@ -1,32 +1,12 @@
-Write-Host ''
-$dateTime = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-Write-Host "=[ START $dateTime ]==================================[ Install.ps1 ]=" -ForegroundColor Blue
+Write-Host "--------------------------------------------------------------------------------" -ForegroundColor Cyan
 Write-Host "Executing $PSCommandPath..." -ForegroundColor Yellow
-
-if ($env:VENV_ORGANIZATION_NAME -eq "Citiq")
-{
-    $env:VENV_ORGANIZATION_NAME = "citiq-prepaid"
-    if ($env:GH_APP_ACCESS_TOKEN_CITIQ_HDT)
-    {
-        $env:GH_REPO_ACCESS_BY_OWN_APPS = $env:GH_APP_ACCESS_TOKEN_CITIQ_HDT
-    }
-}
-elseif ($env:VENV_ORGANIZATION_NAME -eq "BEE")
-{
-    $env:VENV_ORGANIZATION_NAME = "BrightEdgeeServices"
-    if ($env:GH_APP_ACCESS_TOKEN_BEE_HDT)
-    {
-        $env:GH_REPO_ACCESS_BY_OWN_APPS = $env:GH_APP_ACCESS_TOKEN_BEE_HDT
-    }
-}
-git remote set-url origin https://$env:GH_REPO_ACCESS_BY_OWN_APPS@github.com/$env:VENV_ORGANIZATION_NAME/$env:PROJECT_NAME
-(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -
-poetry init
-if (Test-Path -Path "$env:PROJECT_DIR\pyproject.toml")
-{
-    poetry install --with dev
-}
+pip install --upgrade --force --no-cache-dir black
+pip install --upgrade --force --no-cache-dir flake8
+pip install --upgrade --force --no-cache-dir pre-commit
+pip install --upgrade --force --no-cache-dir mdformat
+pip install --upgrade --force --no-cache-dir coverage codecov
 pre-commit install
 pre-commit autoupdate
-Write-Host '-[ END InstallDevEnv.ps1 ]------------------------------------------------------' -ForegroundColor Cyan
-Write-Host ''
+Write-Host "--------------------------------------------------------------------------------" -ForegroundColor Cyan
+Write-Host "Install $env:PROJECT_NAME" -ForegroundColor Yellow
+if (Test-Path -Path $env:PROJECT_DIR\pyproject.toml) {pip install --no-cache-dir -e .[dev]}
