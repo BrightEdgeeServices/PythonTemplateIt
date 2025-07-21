@@ -1,5 +1,5 @@
 DROP DATABASE IF EXISTS ToDelete;
 CREATE DATABASE IF NOT EXISTS ToDelete;
-CREATE USER IF NOT EXISTS 'admin_service'@'%' IDENTIFIED BY 'N0Pa55wrd';
-GRANT ALL ON ToDelete.* TO 'admin_service'@'%';
+CREATE USER IF NOT EXISTS 'installer'@'%' IDENTIFIED BY 'N0Pa55wrd';
+GRANT ALL ON ToDelete.* TO 'installer'@'%';
 FLUSH PRIVILEGES;
