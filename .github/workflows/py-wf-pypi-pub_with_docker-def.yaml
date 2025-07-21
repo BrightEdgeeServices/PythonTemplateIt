@@ -1,0 +1,54 @@
+# py-wf-pypi-pub_with_docker-def.yaml
+name: Default PyPI Pipeline
+
+on:
+  workflow_call:
+    inputs:
+      run_deploy:
+        description: "Set to 'true' to run the Build-and-Publish-to-PyPI job if a tag was specified."
+        required:    true
+        default:     false
+        type:        boolean
+    secrets:
+      GH_REPO_ACCESS_BEE_MASTER:
+        required: true
+      GH_REPO_ACCESS_RTE_MASTER:
+        required: true
+      MYSQL_PASSWORD:
+        required: true
+      MYSQL_ROOT_PASSWORD:
+        required: true
+      MYSQL_USER:
+        required: true
+      PYPI_API_TOKEN_PROD:
+        required: true
+      RELEASE_EMAIL_USER:
+        required: true
+      RELEASE_EMAIL_PASSWORD:
+        required: true
+
+jobs:
+  Pre-Commit:
+    uses:    BrightEdgeeServices/devops-automation/.github/workflows/py-pc-precom-def.yaml@master
+    secrets: inherit
+
+  CI:
+    uses: BrightEdgeeServices/devops-automation/.github/workflows/py-pc-ci-pub_with_docker-def.yaml@master
+    secrets:
+      GH_REPO_ACCESS_BEE_MASTER: ${{secrets.GH_REPO_ACCESS_BEE_MASTER }}
+      GH_REPO_ACCESS_RTE_MASTER: ${{secrets.GH_REPO_ACCESS_RTE_MASTER }}
+
+  Build-and-Publish-to-PyPI:
+    permissions:
+      id-token: write
+      contents: write
+    if:   ${{ inputs.run_deploy == true }}
+    needs:
+      - Pre-Commit
+      - CI
+    uses: BrightEdgeeServices/devops-automation/.github/workflows/py-pc-pypi-default.yaml@master
+    secrets:
+      GH_REPO_ACCESS_BEE_MASTER: ${{secrets.GH_REPO_ACCESS_BEE_MASTER }}
+      GH_REPO_ACCESS_RTE_MASTER: ${{secrets.GH_REPO_ACCESS_RTE_MASTER }}
+      RELEASE_EMAIL_PASSWORD:    ${{secrets.RELEASE_EMAIL_PASSWORD }}
+      RELEASE_EMAIL_USER:        ${{secrets.RELEASE_EMAIL_USER }}
