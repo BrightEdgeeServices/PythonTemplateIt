@@ -1,4 +1,4 @@
-	# Delete one of the license notices (and this s line) below:
+# Delete one of the license notices (and this s line) below:
 MIT License
 ----------------------------------------------------------------------------
 Copyright (c) 2023, Hendrik du Toit
@@ -22,8 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ----------------------------------------------------------------------------
 COPYRIGHT NOTICE
-
-Copyright © 2023, Bright Edge eServices. All rights reserved.
+----------------------------------------------------------------------------
+Copyright (c) 2023, Bright Edge eServices. All rights reserved.
 
 Unauthorized copying, distribution, modification, public display, or public
 performance of this software, or any portion of it, is strictly prohibited. This

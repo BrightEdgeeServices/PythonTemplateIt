@@ -15,11 +15,15 @@ if (Test-Path -Path "$env:PROJECT_DIR\SetupPrivateRepoAccess.ps1") {
     & "$env:PROJECT_DIR\SetupPrivateRepoAccess.ps1"
 }
 if (Test-Path -Path "$env:PROJECT_DIR\pyproject.toml") {
-    poetry lock
-    poetry install --with dev
-    Poetry sync --with dev
+    Write-Host 'Poetry Install...' -ForegroundColor Yellow
+    poetry lock --no-cache
+    poetry install --with dev --no-cache
+    poetry update --with dev --no-cache
+    Poetry sync --with dev --no-cache
 }
+Write-Host 'Pre-Commit Install...' -ForegroundColor Yellow
 pre-commit install
+Write-Host 'Pre-Commit Auto Update...' -ForegroundColor Yellow
 pre-commit autoupdate
 if (Test-Path -Path "$env:PROJECT_DIR\SetUpDocker.ps1") {
     & "$env:PROJECT_DIR\SetUpDocker.ps1"

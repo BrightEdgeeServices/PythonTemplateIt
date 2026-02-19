@@ -1,7 +1,7 @@
 # pre-commit-config.yaml
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: check-added-large-files
         args: [ '--maxkb=500' ]
@@ -18,14 +18,13 @@ repos:
         args: [ --markdown-linebreak-ext=md ]
 
   - repo: https://github.com/executablebooks/mdformat
-    rev: 0.7.22
+    rev: 1.0.0
     hooks:
       - id: mdformat
         args: [ --end-of-line, crlf, README.md, ReleaseNotes.md ]
         additional_dependencies:
           - mdformat-black
           - mdformat-gfm
-          - mdformat_frontmatter
 
   - repo: https://github.com/rstcheck/rstcheck
     rev: v6.2.5
@@ -35,13 +34,13 @@ repos:
         args: [ "--config", ".rstcheck.cfg" ]
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.20.0
+    rev: v3.21.2
     hooks:
       - id: pyupgrade
         args: [ --py312-plus ]
 
   - repo: https://github.com/pycqa/isort
-    rev: 6.0.1
+    rev: 7.0.0
     hooks:
       - id: isort
         args: [ "--profile", "black", "--filter-files", "--force-single-line-imports",
@@ -55,8 +54,8 @@ repos:
         additional_dependencies:
           - tomli
 
-  - repo: https://github.com/psf/black
-    rev: 25.1.0
+  - repo: https://github.com/psf/black-pre-commit-mirror
+    rev: 26.1.0
     hooks:
     - id: black
       language_version: python3
@@ -66,4 +65,4 @@ repos:
     hooks:
     - id: flake8
       language_version: python3
-      exclude: 'templates'
+      exclude: 'legacy'
