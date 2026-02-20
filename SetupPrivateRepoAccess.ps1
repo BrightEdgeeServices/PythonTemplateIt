@@ -19,10 +19,10 @@ function Publish-RepositoryConfiguration {
         [Object]$RepoDetails
     )
     Write-Host "Add configuration" -ForegroundColor Magenta
-    $command = "poetry source add --priority=explicit RTE https://github.com/$( $RepoDetails.org )/$( $RepoDetails.name ).git"
+    $command = "poetry source add --priority=explicit $( $RepoDetails.name ) https://github.com/$( $RepoDetails.org )/$( $RepoDetails.name ).git"
     Write-Host "Executing: $command" -ForegroundColor Cyan
     Invoke-Expression $command
-    $command = "poetry add --source RTE git+https://github.com/$( $RepoDetails.org )/$( $RepoDetails.name ).git$( $RepoDetails.version_branch )"
+    $command = "poetry add --source $( $RepoDetails.name ) git+https://github.com/$( $RepoDetails.org )/$( $RepoDetails.name ).git$( $RepoDetails.version_branch )"
     Write-Host "Executing: $command" -ForegroundColor Cyan
     Invoke-Expression $command
 }
@@ -33,16 +33,49 @@ Write-Host "=[ START $dateTime ]===================[ SetupPrivateRepoAccess.ps1 
 Write-Host "Executing $PSCommandPath..." -ForegroundColor Yellow
 
 # List of keys to configure in Poetry
-poetry config "http-basic.BEE" "__token__" $env:GH_REPO_ACCESS_BEE_LOCAL_USER
-poetry config "http-basic.RTE" "__token__" $env:GH_REPO_ACCESS_RTE_LOCAL_USER
+#poetry config "http-basic.BEE" "__token__" $env:GH_REPO_ACCESS_BEE_LOCAL_USER
+#poetry config "http-basic.RTE" "__token__" $env:GH_REPO_ACCESS_RTE_LOCAL_USER
 
-$RepoDetails = [PSCustomObject]@{
-    name = "PoetryPrivate"
-    org = "BrightEdgeeServices"
-    version_branch = "#master"
+$RepoDetailsList = @(
+    [PSCustomObject]@{
+        name = "rtecommon"
+        token          = "RTE"
+        org            = "RealTimeEvents"
+        version_branch = "#master"
+        active = $false
+    },
+    [PSCustomObject]@{
+        name = "rtedb"
+        token          = "RTE"
+        org            = "RealTimeEvents"
+        version_branch = "#master"
+        active = $false
+    }
+    [PSCustomObject]@{
+        name = "fidewebtourparser"
+        token = "RTE"
+        org = "RealTimeEvents"
+        version_branch = "#master"
+        active = $false
+    }
+    [PSCustomObject]@{
+        name = "fideratinglist"
+        token = "RTE"
+        org = "RealTimeEvents"
+        version_branch = "#master"
+        active = $false
+    }
+)
+
+foreach ($RepoDetails in $RepoDetailsList) {
+    # Configure credentials for this source
+    poetry config "http-basic.$( $RepoDetails.name )" "__token__" $env:GH_REPO_ACCESS_RTE_LOCAL_USER
+
+    Remove-RepositoryConfiguration -RepoDetails $RepoDetails
+    if($RepoDetails.active -eq $true) {
+        Publish-RepositoryConfiguration -RepoDetails $RepoDetails
+    }
 }
-Remove-RepositoryConfiguration -RepoDetails $RepoDetails
-#Publish-RepositoryConfiguration -RepoDetails $RepoDetails
 
 Write-Host '-[ END SetupPrivateRepoAccess.ps1 ]---------------------------------------------' -ForegroundColor Cyan
 Write-Host ''
