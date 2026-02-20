@@ -23,6 +23,7 @@ ______________________________________________________________________
 - Python 3.12+
 - Poetry
 - Docker (optional, for local MySQL service)
+- Pre-commit
 - GitHub access token(s) for private dependency repositories
 
 ______________________________________________________________________
@@ -36,13 +37,16 @@ ______________________________________________________________________
 # 2) Configure private dependency access
 .\SetupPrivateRepoAccess.ps1
 
-# 3) Install project and dev dependencies
+# 3) (Optional) Configure GitHub CLI access for repository tasks
+.\SetupGitHubAccess.ps1
+
+# 4) Install project and dev dependencies
 .\InstallDevEnv.ps1
 
-# 4) Start local database (optional)
+# 5) Start local database (optional)
 docker compose up -d db
 
-# 5) Run tests
+# 6) Run tests
 poetry run pytest
 ```
 
@@ -54,6 +58,8 @@ ______________________________________________________________________
 - `InstallDevEnv.ps1`: Installs dev dependencies, syncs Poetry environment, and updates pre-commit hooks.
 - `SetupDotEnv.ps1`: Generates a `.env` file from current environment variables.
 - `SetupPrivateRepoAccess.ps1`: Configures Poetry sources and credentials for private repositories.
+- `SetupGitHubAccess.ps1`: Configures GitHub authentication for local automation tasks.
+- `SetUpDocker.ps1`: Installs and configures Docker support on development machines.
 - `CreateDbSqlScript.ps1`: Creates SQL bootstrap script for local MySQL setup.
 
 ______________________________________________________________________
@@ -65,11 +71,13 @@ ______________________________________________________________________
 1. Compare the current branch against `master`:
 
    ```powershell
-   git diff --name-status master
-   git diff --shortstat master
+   git rev-parse --abbrev-ref HEAD
+   git diff --name-status master...HEAD
+   git diff --shortstat master...HEAD
    ```
 
 1. Add a new top section in `ReleaseNotes.md` using grouped headings, a timestamp, and summary statistics.
+   Git-tracked diffs already exclude `.gitignore` entries.
 
 1. Update the package version in `pyproject.toml` using SemVer.
 
