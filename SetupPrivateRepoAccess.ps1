@@ -49,21 +49,21 @@ $RepoDetailsList = @(
         token          = "RTE"
         org            = "RealTimeEvents"
         version_branch = "#master"
-        active = $true
+        active = $false
     }
     [PSCustomObject]@{
         name = "fidewebtourparser"
         token = "RTE"
         org = "RealTimeEvents"
         version_branch = "#master"
-        active = $true
+        active = $false
     }
     [PSCustomObject]@{
         name = "fideratinglist"
         token = "RTE"
         org = "RealTimeEvents"
         version_branch = "#master"
-        active = $true
+        active = $false
     }
 )
 
@@ -72,7 +72,7 @@ foreach ($RepoDetails in $RepoDetailsList) {
     poetry config "http-basic.$( $RepoDetails.name )" "__token__" $env:GH_REPO_ACCESS_RTE_LOCAL_USER
 
     Remove-RepositoryConfiguration -RepoDetails $RepoDetails
-    if($RepoDetails.active -eq $true -eq $true) {
+    if($RepoDetails.active -eq $true) {
         Publish-RepositoryConfiguration -RepoDetails $RepoDetails
     }
 }

@@ -25,10 +25,7 @@
         "Topic :: System :: Archiving :: Packaging",
     ]
     dependencies = [
-        "rtecommon @ git+https://github.com/RealTimeEvents/rtecommon.git@master",
-        "rtedb @ git+https://github.com/RealTimeEvents/rtedb.git@master",
-        "fidewebtourparser @ git+https://github.com/RealTimeEvents/fidewebtourparser.git@master",
-        "fideratinglist @ git+https://github.com/RealTimeEvents/fideratinglist.git@master",
+    "rtecommon @ git+https://github.com/RealTimeEvents/rtecommon.git@master"
     ]
     license = "MIT"
     #license = "Proprietary"
@@ -75,16 +72,13 @@ source = [
 [tool.isort]
     profile = "black"
 
-[tool.poetry]
-packages = [
-    { include = "dma", from = "src" },
-]
+#[tool.poetry]
+#packages = [
+#    { include = "pythontemplateit", from = "src" },
+#]
 
 [tool.poetry.dependencies]
 rtecommon = {source = "rtecommon"}
-rtedb = {source = "rtedb"}
-fidewebtourparser = {source = "fidewebtourparser"}
-fideratinglist = {source = "fideratinglist"}
 
 [tool.poetry.group.dev]
     optional = true
@@ -108,24 +102,15 @@ fideratinglist = {source = "fideratinglist"}
     twine = ">=6.1.0"
 
 [[tool.poetry.source]]
-    name = "rtecommon"
-    url = "https://github.com/RealTimeEvents/rtecommon.git"
-    priority = "explicit"
+name = "false"
+url = "https://github.com/RealTimeEvents/false.git"
+priority = "explicit"
+
 
 [[tool.poetry.source]]
-    name = "rtedb"
-    url = "https://github.com/RealTimeEvents/rtedb.git"
-    priority = "explicit"
-
-[[tool.poetry.source]]
-    name = "fidewebtourparser"
-    url = "https://github.com/RealTimeEvents/fidewebtourparser.git"
-    priority = "explicit"
-
-[[tool.poetry.source]]
-    name = "fideratinglist"
-    url = "https://github.com/RealTimeEvents/fideratinglist.git"
-    priority = "explicit"
+name = "rtecommon"
+url = "https://github.com/RealTimeEvents/rtecommon.git"
+priority = "explicit"
 
 [tool.pytest.ini_options]
     norecursedirs = ["tests/legacy"]
