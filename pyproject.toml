@@ -25,7 +25,6 @@
         "Topic :: System :: Archiving :: Packaging",
     ]
     dependencies = [
-    "rtecommon @ git+https://github.com/RealTimeEvents/rtecommon.git@master"
     ]
     license = "MIT"
     #license = "Proprietary"
@@ -100,12 +99,6 @@ rtecommon = {source = "rtecommon"}
     ], version = ">=6.2.4" }
     sphinx = ">=8.1.3"
     twine = ">=6.1.0"
-
-[[tool.poetry.source]]
-name = "false"
-url = "https://github.com/RealTimeEvents/false.git"
-priority = "explicit"
-
 
 [[tool.poetry.source]]
 name = "rtecommon"
