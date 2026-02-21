@@ -6,7 +6,7 @@
 
 [project]
     name = "PythonTemplateIt"
-    version = "0.5.0"
+    version = "0.6.0"
     description = "Template for new Python projects."
     authors = [
         { name = "Hendrik du Toit", email = "hendrik@brightedge.co.za" }
