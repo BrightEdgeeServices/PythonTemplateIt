@@ -5,90 +5,99 @@
 | General      | [![][general_maintenance_y_img]][general_maintenance_y_lnk] [![][general_semver_pic]][general_semver_link] [![][general_license_img]][general_license_lnk] [![][general_release_notes_img]][general_release_notes_lnk] |
 | CD/CI        | [![][gh_pr_workflow_img]][gh_pr_workflow_lnk] [![][gh_release_workflow_img]][gh_release_workflow_lnk] [![][cicd_codestyle_img]][cicd_codestyle_lnk] [![][codecov_img]][codecov_lnk]                                    |
 | PyPI         | [![][pypi_release_img]][pypi_release_lnk] [![][pypi_py_versions_img]][pypi_py_versions_lnk] [![][pypi_format_img]][pypi_format_lnk] [![][pypi_downloads_img]][pypi_downloads_lnk]                                      |
-| Github       | [![][gh_issues_img]][gh_issues_lnk] [![][gh_language_img]][gh_language_lnk] [![][gh_last_commit_img]][gh_last_commit_lnk] [![][gh_deployment_img]][gh_deployment_lnk]                                                  |
-
-Template for Python projects with standardized tooling, automation scripts, and reusable GitHub workflows.
+| GitHub       | [![][gh_issues_img]][gh_issues_lnk] [![][gh_language_img]][gh_language_lnk] [![][gh_last_commit_img]][gh_last_commit_lnk] [![][gh_deployment_img]][gh_deployment_lnk]                                                  |
 
 ______________________________________________________________________
 
-## Overview
+## Short description
 
-This repository is a starter template for Python services in the BrightEdgeeServices and RealTimeEvents ecosystem.
-It provides a baseline for packaging, linting, testing, environment provisioning, and release automation.
+PythonTemplateIt is a reusable template for Python projects with standardized packaging, linting, testing, environment bootstrapping, and GitHub workflow automation.
 
 ______________________________________________________________________
 
-## Requirements
+## Module Overview
+
+### Key Features
+
+- Poetry-based project packaging and dependency management.
+- Pre-configured quality tooling (`black`, `isort`, `flake8`, `pytest`, `pre-commit`).
+- PowerShell scripts for local setup, private repository access, and Docker-assisted database provisioning.
+- Reusable CI/CD workflows for pull request validation and post-merge release/publish handling.
+- Release note and versioning conventions aligned to SemVer.
+
+### Project Structure
+
+- `src/`: Application modules and package source code.
+- `tests/`: Unit and functional test suites with fixtures and test data.
+- `scripts/`: SQL/bootstrap assets.
+- `legacy/`: Archived or excluded legacy resources.
+- `*.ps1`: Setup and automation scripts for environment and toolchain tasks.
+
+______________________________________________________________________
+
+## Getting Started
+
+### Prerequisites
 
 - Python 3.12+
 - Poetry
 - Docker (optional, for local MySQL service)
-- Pre-commit
-- GitHub access token(s) for private dependency repositories
+- GitHub access token(s) for private package sources when needed
 
-______________________________________________________________________
-
-## Quick Start
+### Setup
 
 ```powershell
-# 1) Prepare local environment variables
+# 1) Generate .env from the SetupDotEnv script
 .\SetupDotEnv.ps1
 
-# 2) Configure private dependency access
+# 2) Configure private repository access for Poetry
 .\SetupPrivateRepoAccess.ps1
 
-# 3) (Optional) Configure GitHub CLI access for repository tasks
+# 3) Optional: configure GitHub CLI access
 .\SetupGitHubAccess.ps1
 
-# 4) Install project and dev dependencies
+# 4) Install and sync development dependencies
 .\InstallDevEnv.ps1
 
-# 5) Start local database (optional)
-docker compose up -d db
+# 5) Optional: start local MySQL service
+.\SetUpDocker.ps1
+# or
+# docker compose up -d db
 
 # 6) Run tests
 poetry run pytest
 ```
 
+### Common Commands
+
+```powershell
+poetry install
+poetry run pytest
+poetry run pytest --cov=src --cov=tests --cov-report=term-missing
+poetry run black src tests
+poetry run isort src tests
+poetry run flake8 src tests
+poetry run pre-commit run --all-files
+```
+
 ______________________________________________________________________
 
-## Script Overview
+## Automation Scripts
 
-- `Install.ps1`: Initializes Poetry tooling and installs dependencies.
-- `InstallDevEnv.ps1`: Installs dev dependencies, syncs Poetry environment, and updates pre-commit hooks.
-- `SetupDotEnv.ps1`: Generates a `.env` file from current environment variables.
-- `SetupPrivateRepoAccess.ps1`: Configures Poetry sources and credentials for private repositories.
-- `SetupGitHubAccess.ps1`: Configures GitHub authentication for local automation tasks.
-- `SetUpDocker.ps1`: Installs and configures Docker support on development machines.
-- `CreateDbSqlScript.ps1`: Creates SQL bootstrap script for local MySQL setup.
-
-______________________________________________________________________
-
-## Release Notes Update Process
-
-1. Commit the current implementation or stage all intended release changes.
-
-1. Compare the current branch against `master`:
-
-   ```powershell
-   git rev-parse --abbrev-ref HEAD
-   git diff --name-status master...HEAD
-   git diff --shortstat master...HEAD
-   ```
-
-1. Add a new top section in `ReleaseNotes.md` using grouped headings, a timestamp, and summary statistics.
-   Git-tracked diffs already exclude `.gitignore` entries.
-
-1. Update the package version in `pyproject.toml` using SemVer.
-
-1. Push changes and create a PR.
+- `Install.ps1`: Bootstraps Poetry tooling and installs dependencies.
+- `InstallDevEnv.ps1`: Installs development dependencies and configures pre-commit tooling.
+- `SetupDotEnv.ps1`: Generates `.env` values from environment variables.
+- `SetupPrivateRepoAccess.ps1`: Configures private package source credentials.
+- `SetupGitHubAccess.ps1`: Configures GitHub authentication for local automation.
+- `SetUpDocker.ps1`: Provisions Docker resources used by database-related workflows.
+- `CreateDbSqlScript.ps1`: Generates SQL bootstrap scripts for MySQL setup.
 
 ______________________________________________________________________
 
 ## Active Workflows
 
 - `.github/workflows/py-temp-pr-pub-no_docker-def.yaml`: Pull request validation workflow.
-- `.github/workflows/py-temp-publish-pub-build_release_notify_after_merge-def.yaml`: Release build/publish and notification on merge to `master`.
+- `.github/workflows/py-temp-publish-pub-build_release_notify_after_merge-def.yaml`: Release build, publish, and notification workflow after merge to `master`.
 
 [cicd_codestyle_img]: https://img.shields.io/badge/code%20style-black-000000.svg "Black"
 [cicd_codestyle_lnk]: https://github.com/psf/black "Black"

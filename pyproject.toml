@@ -6,7 +6,7 @@
 
 [project]
     name = "PythonTemplateIt"
-    version = "0.5.0"
+    version = "0.6.0"
     description = "Template for new Python projects."
     authors = [
         { name = "Hendrik du Toit", email = "hendrik@brightedge.co.za" }
@@ -58,15 +58,19 @@
 [tool.codespell]
     count = ""
     quiet-level = 2
-    skip = "working/*"
+    skip = "working/*,legacy/*"
     ignore-words-list = "space-holder"
     write-changes = ""
 
 [tool.coverage.run]
-source = [
-    "src",
-    "tests"
-]
+    source = [
+        "src",
+        "tests"
+    ]
+    omit = [
+        "./legacy/*",
+        "./tests/legacy/*"
+    ]
 
 [tool.isort]
     profile = "black"

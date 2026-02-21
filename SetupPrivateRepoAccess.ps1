@@ -42,10 +42,17 @@ $RepoDetailsList = @(
         token          = "RTE"
         org            = "RealTimeEvents"
         version_branch = "#master"
-        active = $false
+        active = $true
     },
     [PSCustomObject]@{
-        name = "rtedb"
+        name = "false"
+        token          = "RTE"
+        org            = "RealTimeEvents"
+        version_branch = "#master"
+        active = $true
+    }
+    [PSCustomObject]@{
+        name = "rteapi"
         token          = "RTE"
         org            = "RealTimeEvents"
         version_branch = "#master"
