@@ -5,19 +5,14 @@ performant code following Python best practices.
 
 ## Project Structure & Module Organization
 
-- Core application code lives in `src/dma/`:
-  - `core/` contains downloader and infrastructure helpers.
-  - `services/` contains long-running and integration services.
-  - `crud/`, `tables/`, and `schemas/` hold data-access, ORM models, and Pydantic schemas.
-  - `configs/` and `conf_files/` contain runtime configuration.
-    Keep new modules under `src/dma/` by concern (service, schema, CRUD, etc.) instead of adding root-level scripts.
-- Tests are in `tests/` (`unit/`, `helpers/`, `test_data/`).
+- Core application code lives in `src/[repo]/` where "repo" is the name of the specific repo or according to the pyproject.toml
+- The envorinment are driven by environment variables. The $env:PROJECT_DIR holds the base directory for all repos.
+- Tests are in `tests/` (`unit/`, `functional`, `helpers/`, `test_data/`).
 - Legacy/archived code is in `legacy/` and `tests/legacy/` (excluded from normal test runs).
 - SQL/bootstrap assets are in `scripts/` and `data/`.
 
 ## Build, Test, and Development Commands
 
--
 - `poetry install` installs project and dev dependencies.
 - `poetry run python src/dma/main.py` runs the main downloader flow.
 - `poetry run pytest` runs the active test suite.
@@ -26,7 +21,11 @@ performant code following Python best practices.
 - `poetry run isort src tests` sorts imports (Black-compatible profile).
 - `poetry run flake8 src tests` runs lint checks.
 - `poetry run pre-commit run --all-files` runs the same hooks used in CI.
-- `docker compose up -d dma_db` starts the local MySQL service used by integrations.
+- `.env` file is created by the `SetupDotEnv.ps1` in the repo root directory. Do not edit the `.env` file direct. Amend the `SetupDotEnv.ps1` script and then run it to update the `.env` file.
+- External Docker is only used for functional (end-to-end) testing. Units test will create its own Docker container and
+  database instance for testing.
+- External Docker container is created by running the `SetUpDocker.ps1` script, which calls several other scripts. This script can be amended as needed.
+- SQL/bootstrap assets are in `scripts/` and `data/`.
 
 ## Python Best Practices
 
@@ -48,7 +47,7 @@ performant code following Python best practices.
 **General Guidelines**
 
 - Use the `pytest` framework
-- Pytest is configured in `pyproject.toml` (`testpaths = tests`, `pythonpath = src,tests`). `tests/legacy/` is intentionally ignored. Add tests next to related unit domains (for example, downloader changes -> `tests/unit/test_core_downloader.py`).
+- Pytest is configured in `pyproject.toml` (`testpaths = tests`, `pythonpath = src,tests`). `tests/legacy/` is intentionally ignored.
 - Use `pytest-cov` to check test coverage
 - Use `pytest-xdist` to run tests in parallel
 - Use `pytest-sugar` to make the test output more readable
@@ -61,6 +60,7 @@ performant code following Python best practices.
 - Prefer deterministic unit tests
 - Use fixtures from `tests/conftest.py` and `tests/test_data/`.
 - Use the working_dir fixture to create a temporary directory for testing.
+- Do not assign default values to any variable. If the actual value is not available, the code must crash.
 
 **Unit Testing Guidelines**
 
@@ -80,3 +80,14 @@ performant code following Python best practices.
 - Do not use `pytest-mock` to mock external dependencies for functional tests.
 - Functional tests must test the integration of multiple modules.
 - Functional tests must reside in the `tests/functional` directory.
+
+## Security and Credentials
+
+- Each repo have a `.env` file that contains the relevant environment variables, secrets and credentials for that repo.
+- GitHub can be accessed by using the $env:GH_REPO_ACCESS_RTE_LOCAL_USER token
+- The default port for MySQL are in the environment variable $env:MYSQL_TCP_PORT
+- The default database name for MySQL are in the environment variable $env:MYSQL_DATABASE
+- The default password for MySQL are in the environment variable $env:MYSQL_PASSWORD
+- The default host for MySQL are in the environment variable $env:MYSQL_HOST
+- The default user name for MySQL are in the environment variable $env:MYSQL_USER
+- The default root password for MySQL are in the environment variable $env:MYSQL_ROOT_PASSWORD

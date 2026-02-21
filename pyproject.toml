@@ -58,15 +58,19 @@
 [tool.codespell]
     count = ""
     quiet-level = 2
-    skip = "working/*"
+    skip = "working/*,legacy/*"
     ignore-words-list = "space-holder"
     write-changes = ""
 
 [tool.coverage.run]
-source = [
-    "src",
-    "tests"
-]
+    source = [
+        "src",
+        "tests"
+    ]
+    omit = [
+        "./legacy/*",
+        "./tests/legacy/*"
+    ]
 
 [tool.isort]
     profile = "black"
