@@ -1,4 +1,4 @@
-import pythontemplateit
+import pti.pythontemplateit as pythontemplateit
 
 
 class TestMyClass:

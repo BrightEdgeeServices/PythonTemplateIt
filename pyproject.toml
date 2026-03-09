@@ -36,7 +36,7 @@
     ]
     readme = { file = "README.md", content-type = "text/markdown" }
     requires-python = ">=3.12"
-    packages = [{include = "pythontemplateit", from = "src"}]
+    packages = [{include = "pti", from = "src"}]
 
 [project.urls]
     # documentation = "https://readthedocs.org"
@@ -78,7 +78,7 @@
 
 [tool.poetry]
     packages = [
-        { include = "pythontemplateit", from = "src" },
+        { include = "pti", from = "src" },
     ]
 
 [tool.poetry.dependencies]
