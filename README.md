@@ -20,13 +20,15 @@ ______________________________________________________________________
 ### Key Features
 
 - Poetry-based project packaging and dependency management.
+- Published package layout rooted under `src/pti/` for template imports such as `import pti.pythontemplateit`.
 - Pre-configured quality tooling (`black`, `isort`, `flake8`, `pytest`, `pre-commit`).
-- PowerShell scripts for local setup, private repository access, and Docker-assisted database provisioning.
+- PowerShell and shell scripts for Python setup, optional React setup, private repository access, and Docker-assisted database provisioning.
 - Reusable CI/CD workflows for pull request validation and post-merge release/publish handling.
 - Release note and versioning conventions aligned to SemVer.
 
 ### Project Structure
 
+- `src/pti/`: Template Python package source used by the published distribution.
 - `src/`: Application modules and package source code.
 - `tests/`: Unit and functional test suites with fixtures and test data.
 - `scripts/`: SQL/bootstrap assets.
@@ -53,19 +55,31 @@ ______________________________________________________________________
 # 2) Configure private repository access for Poetry
 .\SetupPrivateRepoAccess.ps1
 
-# 3) Optional: configure GitHub CLI access
+# 3) Install Python tooling and project dependencies
+.\InstallPy.ps1
+
+# 4) Optional: configure GitHub CLI access
 .\SetupGitHubAccess.ps1
 
-# 4) Install and sync development dependencies
+# 5) Refresh development dependencies directly when needed
 .\InstallDevEnv.ps1
 
-# 5) Optional: start local MySQL service
+# 6) Optional: start local MySQL service
 .\SetUpDocker.ps1
 # or
 # docker compose up -d db
 
-# 6) Run tests
+# 7) Run tests
 poetry run pytest
+```
+
+### Optional Frontend Bootstrap
+
+```powershell
+# Use these only in repos that also contain a Node/React app
+.\InstallReact.ps1
+# or
+bash ./install_react.sh
 ```
 
 ### Common Commands
@@ -84,8 +98,10 @@ ______________________________________________________________________
 
 ## Automation Scripts
 
-- `Install.ps1`: Bootstraps Poetry tooling and installs dependencies.
+- `InstallPy.ps1`: Bootstraps Poetry tooling, updates the repository remote when credentials are available, and installs Python dependencies.
 - `InstallDevEnv.ps1`: Installs development dependencies and configures pre-commit tooling.
+- `InstallReact.ps1`: Installs Node dependencies for React projects on Windows and configures pre-commit when available.
+- `install_react.sh`: Bash equivalent of the React installer for non-PowerShell environments.
 - `SetupDotEnv.ps1`: Generates `.env` values from environment variables.
 - `SetupPrivateRepoAccess.ps1`: Configures private package source credentials.
 - `SetupGitHubAccess.ps1`: Configures GitHub authentication for local automation.

@@ -6,7 +6,7 @@
 
 [project]
     name = "PythonTemplateIt"
-    version = "0.6.0"
+    version = "0.7.0"
     description = "Template for new Python projects."
     authors = [
         { name = "Hendrik du Toit", email = "hendrik@brightedge.co.za" }
@@ -36,6 +36,7 @@
     ]
     readme = { file = "README.md", content-type = "text/markdown" }
     requires-python = ">=3.12"
+    packages = [{include = "pti", from = "src"}]
 
 [project.urls]
     # documentation = "https://readthedocs.org"
@@ -75,10 +76,10 @@
 [tool.isort]
     profile = "black"
 
-#[tool.poetry]
-#packages = [
-#    { include = "pythontemplateit", from = "src" },
-#]
+[tool.poetry]
+    packages = [
+        { include = "pti", from = "src" },
+    ]
 
 [tool.poetry.dependencies]
 
@@ -97,9 +98,6 @@
     pygments = "^2.19.1"
     pytest = ">=8.3.4"
     pytest-cov = ">=6.0.0"
-    rstcheck = { extras = [
-        "sphinx",
-    ], version = ">=6.2.4" }
     sphinx = ">=8.1.3"
     twine = ">=6.1.0"
 
@@ -107,9 +105,9 @@
     norecursedirs = ["tests/legacy"]
     addopts = [
         "-vv",
-        "--ignore-glob=*\\Archive",
-    "--ignore=/legacy",
-    "--ignore=tests/legacy",
+        "--ignore-glob=*/Archive",
+        "--ignore=/legacy",
+        "--ignore=tests/legacy",
     ]
     filterwarnings = [
         #    "ignore::DeprecationWarning",

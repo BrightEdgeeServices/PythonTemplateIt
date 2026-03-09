@@ -42,14 +42,14 @@ $RepoDetailsList = @(
         token          = "RTE"
         org            = "RealTimeEvents"
         version_branch = "#master"
-        active = $true
+        active = $false
     },
     [PSCustomObject]@{
-        name = "false"
+        name = "rtedb"
         token          = "RTE"
         org            = "RealTimeEvents"
         version_branch = "#master"
-        active = $true
+        active = $false
     }
     [PSCustomObject]@{
         name = "rteapi"
@@ -67,6 +67,13 @@ $RepoDetailsList = @(
     }
     [PSCustomObject]@{
         name = "fideratinglist"
+        token = "RTE"
+        org = "RealTimeEvents"
+        version_branch = "#master"
+        active = $false
+    }
+    [PSCustomObject]@{
+        name = "sample_data_factory"
         token = "RTE"
         org = "RealTimeEvents"
         version_branch = "#master"
