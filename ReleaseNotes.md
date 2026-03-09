@@ -1,3 +1,36 @@
+# Release 0.7.0
+
+Release Date: 2026-03-09 22:16:32 +02:00
+
+## Packaging and Module Layout
+
+- Moved the template module from `src/pythontemplateit.py` to `src/pti/pythontemplateit.py`, updated `pyproject.toml` package metadata, and aligned `tests/test_pytontemplateit.py` to import through `pti`.
+- Regenerated `poetry.lock` to reflect the package layout and dependency configuration updates.
+
+## Tooling and Documentation Configuration
+
+- Refreshed `.gitignore` patterns for local tooling, generated artifacts, and workspace-specific directories.
+- Updated `.pre-commit-config.yaml` to normalize Markdown files to LF line endings, add the end-of-file fixer, exclude `legacy/` consistently, and disable the active `rstcheck` hook configuration.
+- Removed `.readthedocs.yaml` and `.rstcheck.cfg` as part of the Markdown-first documentation and tooling cleanup.
+- Expanded `AGENTS.md` with repository-specific guidance for workflow orchestration, testing, safety, and task management.
+
+## Environment and Installer Script Updates
+
+- Renamed `Install.ps1` to `InstallPy.ps1`.
+- Added `InstallReact.ps1` and `install_react.sh` to support Node and React dependency bootstrapping, fallback npm install modes, and optional pre-commit setup.
+- Hardened `SetupDotEnv.ps1` so required environment variables must be present before generating `.env`, and expanded the generated variable set.
+- Updated `SetupPrivateRepoAccess.ps1` to change repository activation defaults and add `sample_data_factory` to the managed repository list.
+
+## Summary Statistics
+
+- Branch Name: `hendrik/wip_ever_green_branch`
+- Number of Files Changed: `14`
+- Insertions: `613`
+- Deletions: `613`
+- Files Changed: `.gitignore`, `.pre-commit-config.yaml`, `.readthedocs.yaml`, `.rstcheck.cfg`, `AGENTS.md`, `Install.ps1 => InstallPy.ps1`, `InstallReact.ps1`, `SetupDotEnv.ps1`, `SetupPrivateRepoAccess.ps1`, `install_react.sh`, `poetry.lock`, `pyproject.toml`, `src/pythontemplateit.py => src/pti/pythontemplateit.py`, `tests/test_pytontemplateit.py`.
+
+______________________________________________________________________
+
 # Release 0.6.0
 
 Release Date: 2026-02-22 01:03:19 +02:00
