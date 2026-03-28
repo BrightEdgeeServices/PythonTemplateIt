@@ -1,3 +1,38 @@
+# Release 0.8.0
+
+Release Date: 2026-03-28 09:48:46 +02:00
+
+## Packaging and Dependency Updates
+
+- Moved the published template module from `src/pythontemplateit.py` to `src/pti/pythontemplateit.py`, updated `pyproject.toml` package declarations, and aligned `tests/test_pytontemplateit.py` to import through `pti`.
+- Regenerated `poetry.lock` after refreshing the project metadata, dependency declarations, and development tooling package set.
+
+## Tooling and Repository Automation
+
+- Added `.github/dependabot.yaml` coverage for Poetry, GitHub Actions, and Docker version updates.
+- Updated `.github/workflows/py-temp-publish-pub-build_release_notify_after_merge-def.yaml` so Dependabot merges do not trigger the post-merge release/publish workflow.
+- Refreshed `.gitignore` and `.pre-commit-config.yaml` for workspace artifacts, LF-normalized Markdown formatting, the end-of-file fixer, consistent `legacy/` exclusions, and the removal of the active `rstcheck` hook configuration.
+- Removed `.readthedocs.yaml`, `.rstcheck.cfg`, and the root `Dockerfile` as part of the repository tooling and documentation cleanup.
+- Expanded `AGENTS.md` and refreshed `README.md` and `ReleaseNotes.md` to match the updated workflow, packaging, and release-management conventions.
+
+## Environment and Local Service Updates
+
+- Renamed `Install.ps1` to `InstallPy.ps1`.
+- Added `InstallReact.ps1` and `install_react.sh` to bootstrap React and Node dependencies, retry npm installs with legacy peer dependency handling, and install pre-commit hooks when available.
+- Hardened `SetupDotEnv.ps1` so `.env` is generated from the repository root, required environment variables must be present, and the generated file includes the expanded service and logging configuration set.
+- Updated `SetupPrivateRepoAccess.ps1` to use a repository-local Poetry temp directory when needed, adjust repository activation defaults, and include `sample_data_factory` in the managed source list.
+- Updated `SetUpDocker.ps1` and `docker-compose.yaml` to start the stack with `docker compose up -d`, tune the MySQL container, add service health checks, and provision a Redis container for local workflows.
+
+## Summary Statistics
+
+- Branch Name: `hendrik/wip_ever_green_branch`
+- Number of Files Changed: `22`
+- Insertions: `915`
+- Deletions: `656`
+- Files Changed: `.github/dependabot.yaml`, `.github/workflows/py-temp-publish-pub-build_release_notify_after_merge-def.yaml`, `.gitignore`, `.pre-commit-config.yaml`, `.readthedocs.yaml`, `.rstcheck.cfg`, `AGENTS.md`, `Dockerfile`, `Install.ps1 => InstallPy.ps1`, `InstallReact.ps1`, `README.md`, `ReleaseNotes.md`, `SetUpDocker.ps1`, `SetupDotEnv.ps1`, `SetupPrivateRepoAccess.ps1`, `docker-compose.yaml`, `install_react.sh`, `poetry.lock`, `pyproject.toml`, `src/pythontemplateit.py => src/pti/pythontemplateit.py`, `tasks/todo.md`, `tests/test_pytontemplateit.py`.
+
+______________________________________________________________________
+
 # Release 0.7.0
 
 Release Date: 2026-03-09 22:16:32 +02:00

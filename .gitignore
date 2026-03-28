@@ -46,6 +46,7 @@
 /.idea/
 /.run/
 /.sass-cache
+/.tmp/
 /.vscode/
 /connect.lock
 /coverage

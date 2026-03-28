@@ -12,7 +12,7 @@ on:
 
 jobs:
   Release-After-Merge:
-    if: ${{ github.event.pull_request.merged == true }}
+    if: ${{ github.event.pull_request.merged == true && github.actor != 'dependabot[bot]' }}
     permissions:
       contents: write
     uses: BrightEdgeeServices/devops-automation/.github/workflows/py-wf-publish-pub-build_release_notify_after_merge-def.yaml@master

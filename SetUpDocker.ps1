@@ -50,11 +50,12 @@ if (-not $Pester) {
                 & ./CreateDbSqlScript.ps1
             }
             docker compose -f $DockerConfigFileName down -v
-            docker compose -f $DockerConfigFileName rm --force
+            #            docker compose -f $DockerConfigFileName rm --force
             docker volume prune -a  --force
             docker builder prune --force
-            docker compose -f $DockerConfigFileName create
-            docker compose -f $DockerConfigFileName start
+#            docker compose -f $DockerConfigFileName create
+#            docker compose  start -f $DockerConfigFileName
+            docker compose -f $DockerConfigFileName up -d
         }
         else {
             Write-Host "The $DockerConfigFileName does not exist!" -ForegroundColor Red

@@ -2,9 +2,20 @@
 
 services:
   db:
-    container_name: "${PROJECT_NAME}_db"
     image: mysql:8.3.0
-    command: mysqld --default-authentication-plugin=mysql_native_password
+    command: >
+      mysqld
+      --default-authentication-plugin=mysql_native_password
+      --innodb-buffer-pool-size=8G
+      --innodb-read-io-threads=8
+      --innodb-write-io-threads=8
+      --innodb-buffer-pool-instances=8
+      --max-connections=200
+      --innodb-flush-log-at-trx-commit=2
+      --innodb-flush-method=O_DIRECT
+      --innodb-log-file-size=512M
+      --innodb-log-buffer-size=64M
+      --bulk-insert-buffer-size=64M
     environment:
       INSTALLER_USER_ID: "${INSTALLER_USERID}"
       INSTALLER_USER_PWD: "${INSTALLER_PWD}"
@@ -16,5 +27,22 @@ services:
       PROJECT_NAME: "${PROJECT_NAME}"
     ports:
       - "${MYSQL_TCP_PORT}:3306"
-    volumes:
-      - ./scripts/setup_db.sql:/docker-entrypoint-initdb.d/setup_db.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -uroot -p$$MYSQL_ROOT_PASSWORD -h 127.0.0.1 --silent"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 10s
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes", "--requirepass", "${EVS_REDIS_PASSWORD:-changeme}"]
+    ports:
+      - "${EVS_REDIS_PORT:-6379}:6379"
+    healthcheck:
+      # Alpine has sh and redis-cli; use CMD so exit code propagates cleanly
+      test: ["CMD", "redis-cli", "-a", "${EVS_REDIS_PASSWORD:-changeme}", "PING"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 5s

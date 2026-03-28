@@ -1,6 +1,43 @@
 # SetupPrivateRepoAccess.ps1
 Write-Host ''
 
+function Restore-LocalTempDirectory {
+    if ($null -ne $script:OriginalTemp) {
+        $env:TEMP = $script:OriginalTemp
+    }
+    if ($null -ne $script:OriginalTmp) {
+        $env:TMP = $script:OriginalTmp
+    }
+    if ($null -ne $script:OriginalTmpDir) {
+        $env:TMPDIR = $script:OriginalTmpDir
+    }
+}
+
+function Set-LocalTempDirectory {
+    $script:OriginalTemp = $env:TEMP
+    $script:OriginalTmp = $env:TMP
+    $script:OriginalTmpDir = $env:TMPDIR
+
+    $poetryEnvPath = (poetry env info --path).Trim()
+    $projectRoot = (Resolve-Path $PSScriptRoot).Path
+    $tempRoot = Join-Path $projectRoot ".tmp\poetry"
+
+    if ($poetryEnvPath) {
+        $poetryEnvDrive = [System.IO.Path]::GetPathRoot($poetryEnvPath)
+        $projectDrive = [System.IO.Path]::GetPathRoot($projectRoot)
+        if ($poetryEnvDrive -ne $projectDrive) {
+            $tempRoot = Join-Path $poetryEnvDrive "poetry-temp"
+        }
+    }
+    New-Item -ItemType Directory -Path $tempRoot -Force | Out-Null
+
+    $env:TEMP = $tempRoot
+    $env:TMP = $tempRoot
+    $env:TMPDIR = $tempRoot
+
+    Write-Host "Using temp directory: $tempRoot" -ForegroundColor DarkYellow
+}
+
 function Remove-RepositoryConfiguration {
     param (
         [Object]$RepoDetails
@@ -81,14 +118,20 @@ $RepoDetailsList = @(
     }
 )
 
-foreach ($RepoDetails in $RepoDetailsList) {
-    # Configure credentials for this source
-    poetry config "http-basic.$( $RepoDetails.name )" "__token__" $env:GH_REPO_ACCESS_RTE_LOCAL_USER
+Set-LocalTempDirectory
+try {
+    foreach ($RepoDetails in $RepoDetailsList) {
+        # Configure credentials for this source
+        poetry config "http-basic.$( $RepoDetails.name )" "__token__" $env:GH_REPO_ACCESS_RTE_LOCAL_USER
 
-    Remove-RepositoryConfiguration -RepoDetails $RepoDetails
-    if($RepoDetails.active -eq $true) {
-        Publish-RepositoryConfiguration -RepoDetails $RepoDetails
+        Remove-RepositoryConfiguration -RepoDetails $RepoDetails
+        if($RepoDetails.active -eq $true) {
+            Publish-RepositoryConfiguration -RepoDetails $RepoDetails
+        }
     }
+}
+finally {
+    Restore-LocalTempDirectory
 }
 
 Write-Host '-[ END SetupPrivateRepoAccess.ps1 ]---------------------------------------------' -ForegroundColor Cyan

@@ -23,6 +23,8 @@ ______________________________________________________________________
 - Published package layout rooted under `src/pti/` for template imports such as `import pti.pythontemplateit`.
 - Pre-configured quality tooling (`black`, `isort`, `flake8`, `pytest`, `pre-commit`).
 - PowerShell and shell scripts for Python setup, optional React setup, private repository access, and Docker-assisted database provisioning.
+- Dependabot automation for Poetry dependencies, GitHub Actions workflows, and Docker image updates.
+- Local Docker workflows provision MySQL and Redis services with health checks for template-based projects that need backing services.
 - Reusable CI/CD workflows for pull request validation and post-merge release/publish handling.
 - Release note and versioning conventions aligned to SemVer.
 
@@ -32,6 +34,7 @@ ______________________________________________________________________
 - `src/`: Application modules and package source code.
 - `tests/`: Unit and functional test suites with fixtures and test data.
 - `scripts/`: SQL/bootstrap assets.
+- `docker-compose.yaml`: Local MySQL and Redis service definitions for development and end-to-end environments.
 - `legacy/`: Archived or excluded legacy resources.
 - `*.ps1`: Setup and automation scripts for environment and toolchain tasks.
 
@@ -43,7 +46,7 @@ ______________________________________________________________________
 
 - Python 3.12+
 - Poetry
-- Docker (optional, for local MySQL service)
+- Docker (optional, for local MySQL and Redis services)
 - GitHub access token(s) for private package sources when needed
 
 ### Setup
@@ -64,7 +67,7 @@ ______________________________________________________________________
 # 5) Refresh development dependencies directly when needed
 .\InstallDevEnv.ps1
 
-# 6) Optional: start local MySQL service
+# 6) Optional: start the local service stack
 .\SetUpDocker.ps1
 # or
 # docker compose up -d db
@@ -105,7 +108,7 @@ ______________________________________________________________________
 - `SetupDotEnv.ps1`: Generates `.env` values from environment variables.
 - `SetupPrivateRepoAccess.ps1`: Configures private package source credentials.
 - `SetupGitHubAccess.ps1`: Configures GitHub authentication for local automation.
-- `SetUpDocker.ps1`: Provisions Docker resources used by database-related workflows.
+- `SetUpDocker.ps1`: Recreates the local compose stack in detached mode and is intended for workflows where resetting local database state is acceptable.
 - `CreateDbSqlScript.ps1`: Generates SQL bootstrap scripts for MySQL setup.
 
 ______________________________________________________________________
@@ -113,7 +116,8 @@ ______________________________________________________________________
 ## Active Workflows
 
 - `.github/workflows/py-temp-pr-pub-no_docker-def.yaml`: Pull request validation workflow.
-- `.github/workflows/py-temp-publish-pub-build_release_notify_after_merge-def.yaml`: Release build, publish, and notification workflow after merge to `master`.
+- `.github/workflows/py-temp-publish-pub-build_release_notify_after_merge-def.yaml`: Release build, publish, and notification workflow after merge to `master`, excluding Dependabot-triggered merges.
+- `.github/dependabot.yaml`: Automated dependency update checks for Poetry packages, GitHub Actions workflows, and Docker assets.
 
 [cicd_codestyle_img]: https://img.shields.io/badge/code%20style-black-000000.svg "Black"
 [cicd_codestyle_lnk]: https://github.com/psf/black "Black"
