@@ -10,7 +10,7 @@ These instructions apply to the entire repository rooted at this file.
 
 ## Repository
 
-- Core application code lives in `src/authz/` and `src/ums`.
+- Core application code lives in `src/[repo]/`.
 - The environment is driven by environment variables. The $env:PROJECT_DIR holds the base directory for each repo.
 - Tests are in `tests/` (`unit/`, `e2e/`, `helpers/`, `test_data/`).
 - Legacy/archived code is in `legacy/` and `tests/legacy/` (excluded from normal test runs).
