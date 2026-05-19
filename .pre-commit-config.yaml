@@ -22,7 +22,7 @@ repos:
     rev: 1.0.0
     hooks:
       - id: mdformat
-        args: [--end-of-line, lf, README.md, ReleaseNotes.md]
+        args: [ --end-of-line, lf, --number, README.md, ReleaseNotes.md ]
         additional_dependencies:
           - mdformat-black
           - mdformat-gfm

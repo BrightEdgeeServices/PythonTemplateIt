@@ -21,9 +21,10 @@ ______________________________________________________________________
 
 - Poetry-based project packaging and dependency management.
 - Published package layout rooted under `src/pti/` for template imports such as `import pti.pythontemplateit`.
+- Python runtime support declared for Python 3.10 through Python 3.14.
 - Pre-configured quality tooling (`black`, `isort`, `flake8`, `pytest`, `pre-commit`).
-- PowerShell and shell scripts for Python setup, optional React setup, private repository access, and Docker-assisted database provisioning.
-- Dependabot automation for Poetry dependencies, GitHub Actions workflows, and Docker image updates.
+- PowerShell and shell scripts for Python setup, optional React setup, private repository access, local package switching, and Docker-assisted database provisioning.
+- Dependabot automation for pip dependency checks, GitHub Actions workflows, and Docker image updates.
 - Local Docker workflows provision MySQL and Redis services with health checks for template-based projects that need backing services.
 - Reusable CI/CD workflows for pull request validation and post-merge release/publish handling.
 - Release note and versioning conventions aligned to SemVer.
@@ -108,8 +109,13 @@ ______________________________________________________________________
 - `SetupDotEnv.ps1`: Generates `.env` values from environment variables.
 - `SetupPrivateRepoAccess.ps1`: Configures private package source credentials.
 - `SetupGitHubAccess.ps1`: Configures GitHub authentication for local automation.
+- `SetToLocalRepo.ps1`: Switches configured private dependencies to editable local repository paths.
+- `SetToRemoteRepo.ps1`: Switches configured private dependencies back to GitHub-backed package sources.
 - `SetUpDocker.ps1`: Recreates the local compose stack in detached mode and is intended for workflows where resetting local database state is acceptable.
+- `clean_and_restart.ps1`: Recreates the selected Docker Compose database service from PowerShell and can optionally populate baseline data.
+- `clean_and_restart.sh`: Bash equivalent for recreating the Docker Compose database service and optional population.
 - `CreateDbSqlScript.ps1`: Generates SQL bootstrap scripts for MySQL setup.
+- `scripts/simulate_prod.ps1`: Temporarily offsets selected local ports and regenerates `.env` to simulate production-style settings.
 
 ______________________________________________________________________
 
