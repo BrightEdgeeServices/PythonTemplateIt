@@ -41,11 +41,12 @@ repos:
         args: [ --py312-plus ]
 
   - repo: https://github.com/pycqa/isort
-    rev: 8.0.1
+    rev: 9.0.0a3
     hooks:
       - id: isort
         args: [ "--profile", "black", "--filter-files", "--force-single-line-imports",
                 "--force-alphabetical-sort-within-sections", "--py", "auto" ]
+        exclude: ^legacy/
 
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.2
@@ -57,7 +58,7 @@ repos:
         exclude: ^legacy/
 
   - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 26.3.1
+    rev: 26.5.1
     hooks:
     - id: black
       language_version: python3

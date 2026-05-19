@@ -46,16 +46,36 @@ if (-not $Pester) {
             $DockerConfigFileName = "docker-compose-$Variant.yaml"
         }
         if (Test-Path $DockerConfigFileName) {
+            $DockerComposeProjectName = $env:COMPOSE_PROJECT_NAME
+            if ([string]::IsNullOrWhiteSpace($DockerComposeProjectName)) {
+                $DockerComposeProjectName = $env:PROJECT_NAME
+            }
+            if ([string]::IsNullOrWhiteSpace($DockerComposeProjectName)) {
+                $DockerComposeProjectName = Split-Path -Path (Get-Location) -Leaf
+            }
+
+            $OriginalDockerComposeProjectName = $DockerComposeProjectName
+            $DockerComposeProjectName = $DockerComposeProjectName.ToLowerInvariant()
+            $DockerComposeProjectName = $DockerComposeProjectName -replace '[^a-z0-9_-]', '_'
+            if ($DockerComposeProjectName -notmatch '^[a-z0-9]') {
+                $DockerComposeProjectName = "rte_$DockerComposeProjectName"
+            }
+            if ($DockerComposeProjectName -ne $OriginalDockerComposeProjectName) {
+                Write-Host "Using Docker Compose project name '$DockerComposeProjectName'." -ForegroundColor Yellow
+            }
             if (Test-Path ./CreateDbSqlScript.ps1) {
                 & ./CreateDbSqlScript.ps1
             }
-            docker compose -f $DockerConfigFileName down -v
-            #            docker compose -f $DockerConfigFileName rm --force
+            if (Test-Path ./SetupDotEnv.ps1) {
+                & ./SetupDotEnv.ps1
+            }
+            docker compose -p $DockerComposeProjectName -f $DockerConfigFileName down -v
+            # docker compose -p $DockerComposeProjectName -f $DockerConfigFileName rm --force
             docker volume prune -a  --force
             docker builder prune --force
-#            docker compose -f $DockerConfigFileName create
-#            docker compose  start -f $DockerConfigFileName
-            docker compose -f $DockerConfigFileName up -d
+#            docker compose -p $DockerComposeProjectName -f $DockerConfigFileName create
+#            docker compose -p $DockerComposeProjectName -f $DockerConfigFileName start
+            docker compose -p $DockerComposeProjectName -f $DockerConfigFileName up -d
         }
         else {
             Write-Host "The $DockerConfigFileName does not exist!" -ForegroundColor Red
