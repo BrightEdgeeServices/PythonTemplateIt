@@ -1,3 +1,47 @@
+# Release 0.9.0
+
+Release Date: 2026-05-19 21:38:56 +02:00
+
+______________________________________________________________________
+
+## Packaging and Dependency Updates
+
+- Expanded the declared Python support range to `>=3.10,<3.15`, added Python 3.14 metadata, and aligned Black target versions with the supported runtime range.
+- Refreshed package classifiers, license metadata, coverage configuration, isort source paths, codespell skips, private dependency placeholders, and development dependency versions in `pyproject.toml`.
+- Regenerated `poetry.lock` for the updated dependency and tooling set.
+
+## Tooling and Repository Automation
+
+- Switched Dependabot dependency scanning from Poetry to pip ecosystem configuration.
+- Updated pre-commit Markdown formatting arguments to include numbered-list handling for `README.md` and `ReleaseNotes.md`.
+- Refined `AGENTS.md` project guidance for sub-repository scope, testing fixtures, Docker wording, README update expectations, task tracking, and git message guidance.
+
+## Environment and Local Workflow Scripts
+
+- Added `Install.ps1` to provide a lightweight Poetry installation entry point.
+- Added `SetToLocalRepo.ps1` and `SetToRemoteRepo.ps1` for switching private dependencies between editable local repositories and GitHub-backed sources.
+- Added `clean_and_restart.ps1` and `clean_and_restart.sh` to recreate Docker Compose database services and optionally populate baseline data.
+- Added `scripts/simulate_prod.ps1` to offset selected local ports and regenerate `.env` for production-style simulation.
+- Updated `InstallDevEnv.ps1` with Python version validation and regenerated Poetry lock/install/update/sync commands.
+- Updated `SetUpDocker.ps1` to normalize Docker Compose project names, regenerate `.env` before compose startup, and pass the project name consistently to Docker Compose.
+- Simplified `SetupDotEnv.ps1` generated environment content and added default handling for optional values.
+- Updated `SetupPrivateRepoAccess.ps1` repository metadata formatting and managed private repository entries.
+
+## Documentation Updates
+
+- Updated `README.md` with the current Python support range, pip-based Dependabot coverage, local dependency switching scripts, database reset helpers, and production simulation script.
+- Added this release entry with grouped release notes and branch-diff summary statistics.
+
+## Summary Statistics
+
+- Branch Name: `hendrik/wip_ever_green_branch`
+- Number of Files Changed: `18`
+- Insertions: `1347`
+- Deletions: `846`
+- Files Changed: `.github/dependabot.yaml`, `.gitignore`, `.pre-commit-config.yaml`, `AGENTS.md`, `Install.ps1`, `InstallDevEnv.ps1`, `README.md`, `ReleaseNotes.md`, `SetToLocalRepo.ps1`, `SetToRemoteRepo.ps1`, `SetUpDocker.ps1`, `SetupDotEnv.ps1`, `SetupPrivateRepoAccess.ps1`, `clean_and_restart.ps1`, `clean_and_restart.sh`, `poetry.lock`, `pyproject.toml`, `scripts/simulate_prod.ps1`.
+
+______________________________________________________________________
+
 # Release 0.8.0
 
 Release Date: 2026-03-28 09:48:46 +02:00

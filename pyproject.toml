@@ -6,28 +6,46 @@
 
 [project]
     name = "PythonTemplateIt"
-    version = "0.8.0"
+    version = "0.9.0"
     description = "Template for new Python projects."
     authors = [
         { name = "Hendrik du Toit", email = "hendrik@brightedge.co.za" }
     ]
     classifiers = [
+        "Development Status :: 1 - Planning",
+        "Development Status :: 2 - Pre-Alpha",
+        "Development Status :: 3 - Alpha",
         "Development Status :: 4 - Beta",
-        "Intended Audience :: Developers",
-        "Intended Audience :: Information Technology",
-        "Intended Audience :: System Administrators",
+        "Development Status :: 5 - Production/Stable",
+        "Development Status :: 6 - Mature",
+        "Development Status :: 7 - Inactive",
+        "Environment :: Console",
+        "Environment :: Web Environment",
+        "Framework :: FastAPI",
+        "Framework :: Pydantic :: 2",
+        "Framework :: Pytest",
         "License :: OSI Approved :: MIT License",
+        "License :: Other/Proprietary License",
+        "Operating System :: Android",
+        "Operating System :: Microsoft :: Windows",
+        "Operating System :: POSIX :: Linux",
+        "Operating System :: iOS",
+        "Programming Language :: JavaScript",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
         "Programming Language :: Python :: 3.13",
+        "Programming Language :: Python :: 3.14",
+        "Topic :: Database :: Front-Ends",
+        "Topic :: Internet :: WWW/HTTP :: Dynamic Content :: Content Management System",
+        "Topic :: Security",
         "Topic :: Software Development :: Libraries :: Python Modules",
-        "Topic :: System :: Archiving :: Packaging",
+	"Topic :: Software Development :: Testing",
     ]
     dependencies = [
     ]
-    license = "MIT"
-    #license = "Proprietary"
+    # license = "MIT"
+    license = "Proprietary"
     license-files = ["LICENSE.txt"]
     maintainers = [
         { name = "Hendrik du Toit", email = "hendrikdt@citiqprepaid.co.za" },
@@ -35,7 +53,7 @@
         { name = "Dirk du Toit", email = "dirk@brightedge.co.za" },
     ]
     readme = { file = "README.md", content-type = "text/markdown" }
-    requires-python = ">=3.12"
+    requires-python = ">=3.10,<3.15"
     packages = [{include = "pti", from = "src"}]
 
 [project.urls]
@@ -48,7 +66,11 @@
 [tool.black]
     line-length = 120
     target-version = [
+        "py310",
+        "py311",
+        "py312",
         "py313",
+        "py314",
     ]
     extend-exclude = """
     (
@@ -59,7 +81,7 @@
 [tool.codespell]
     count = ""
     quiet-level = 2
-    skip = "working/*,legacy/*"
+    skip = "working/*,legacy/*,poetry.lock,tests/test_data/*"
     ignore-words-list = "space-holder"
     write-changes = ""
 
@@ -70,11 +92,11 @@
     ]
     omit = [
         "./legacy/*",
-        "./tests/legacy/*"
     ]
 
 [tool.isort]
     profile = "black"
+    src_paths = ["src", "tests"]
 
 [tool.poetry]
     packages = [
@@ -82,6 +104,12 @@
     ]
 
 [tool.poetry.dependencies]
+# DO NOT REMOVE THE BELOW - Henru
+# rtecommon = { path = "../rtecommon", develop = true }
+# fidewebtourparser = { path = "../fidewebtourparser", develop = true }
+# fideratinglist = { path = "../fideratinglist", develop = true }
+# rtedb = { path = "../rtedb", develop = true }
+# sample-data-factory = { path = "../sample_data_factory", develop = true }
 
 [tool.poetry.group.dev]
     optional = true
@@ -94,13 +122,13 @@
     mdformat-gfm = ">=0.4.1"
     mdformat-frontmatter = ">=2.0.8"
     mdformat-footnote = ">=0.1.1"
+    pluggy = ">=1.6.0,<2.0.0"
     pre-commit = ">=4.0.1"
     pygments = "^2.19.1"
-    pytest = ">=8.3.4"
+    pytest = ">=9.0.2"
     pytest-cov = ">=6.0.0"
-    sphinx = ">=8.1.3"
+    docker = ">=7.1.0"
     twine = ">=6.1.0"
-    docker = ">=6.0.0"
 
 [tool.pytest.ini_options]
     norecursedirs = ["tests/legacy"]

@@ -5,7 +5,7 @@ updates:
   # Configure check for outdated GitHub Actions in workflows.
   # See: https://docs.github.com/code-security/dependabot/working-with-dependabot/keeping-your-actions-up-to-date-with-dependabot
   # For Poetry dependencies
-  - package-ecosystem: "poetry"
+  - package-ecosystem: "pip"
     directory: "/"                     # Location of pyproject.toml
     schedule:
       interval: "weekly"

@@ -75,46 +75,39 @@ Write-Host "Executing $PSCommandPath..." -ForegroundColor Yellow
 
 $RepoDetailsList = @(
     [PSCustomObject]@{
-        name = "rtecommon"
+        name           = "rtecommon"
         token          = "RTE"
         org            = "RealTimeEvents"
         version_branch = "#master"
-        active = $false
-    },
+        active         = $false
+    }
     [PSCustomObject]@{
-        name = "rtedb"
+        name           = "rteapi"
         token          = "RTE"
         org            = "RealTimeEvents"
         version_branch = "#master"
-        active = $false
+        active         = $false
     }
     [PSCustomObject]@{
-        name = "rteapi"
+        name           = "fidewebtourparser"
         token          = "RTE"
         org            = "RealTimeEvents"
         version_branch = "#master"
-        active = $false
+        active         = $false
     }
     [PSCustomObject]@{
-        name = "fidewebtourparser"
-        token = "RTE"
-        org = "RealTimeEvents"
+        name           = "fideratinglist"
+        token          = "RTE"
+        org            = "RealTimeEvents"
         version_branch = "#master"
-        active = $false
+        active         = $false
     }
     [PSCustomObject]@{
-        name = "fideratinglist"
-        token = "RTE"
-        org = "RealTimeEvents"
+        name           = "sample_data_factory"
+        token          = "RTE"
+        org            = "RealTimeEvents"
         version_branch = "#master"
-        active = $false
-    }
-    [PSCustomObject]@{
-        name = "sample_data_factory"
-        token = "RTE"
-        org = "RealTimeEvents"
-        version_branch = "#master"
-        active = $false
+        active         = $false
     }
 )
 
