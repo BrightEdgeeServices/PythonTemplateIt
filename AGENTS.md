@@ -145,13 +145,13 @@ If a docker configuration is present:
 ## Task Management
 
 1. **Plan First**: Write plan to `tasks/todo.md` with checkable items
-1. **Verify Plan**: Check in before starting implementation
-1. **Track Progress**: Mark items complete as you go
-1. **Explain Changes**: High-level summary at each step
-1. **Document Results**: Add a review section to `tasks/todo.md`
-1. **Capture Lessons**: Update `tasks/lessons.md` after corrections
-1. **Git**: The tasks/ folder contents should never be pushed to git
-1. **Git Message"**: Write a description for each time a task is completed to use as the message for the relevant git commit. The first line is the "heading" and the next lines a concise summary of the change that was made".
+2. **Verify Plan**: Check in before starting implementation
+3. **Track Progress**: Mark items complete as you go
+4. **Explain Changes**: High-level summary at each step
+5. **Document Results**: Add a review section to `tasks/todo.md`
+6. **Capture Lessons**: Update `tasks/lessons.md` after corrections
+7. **Git**: The tasks/ folder contents should never be pushed to git
+8. **Git Message"**: Write a description for each time a task is completed to use as the message for the relevant git commit. The first line is the "heading" and the next lines a concise summary of the change that was made".
 
 ## Core Principles
 
